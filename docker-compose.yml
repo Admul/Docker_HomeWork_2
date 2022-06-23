@@ -1,0 +1,94 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    volumes:
+      - ./wordpress:/var/www/html
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+
+  freescout:
+    image: tiredofit/freescout
+    container_name: freescout-app
+    ports:
+      - 8001:80
+    links:
+      - freescout-db
+    volumes:
+    ### If you want to perform customizations to the source and have access to it, then uncomment this line - This includes modules
+    #- ./data:/www/html
+    ### Or, if you just want to use Stock Freescout and hold onto persistent files like cache and session use this, one or the other.
+      - ./data:/data
+    ### If you want to just keep the original source and add additional modules uncomment this line
+    #- ./modules:/www/html/Modules
+      - ./logs/:/www/logs
+    environment:
+      - CONTAINER_NAME=freescout-app
+    
+      - DB_HOST=freescout-db
+      - DB_NAME=freescout
+      - DB_USER=freescout
+      - DB_PASS=freescout
+
+      - SITE_URL=http://127.0.0.1:8001
+      - ADMIN_EMAIL=admin@yandex.ru
+      - ADMIN_PASS=homework
+      - ENABLE_SSL_PROXY=FALSE  
+      - DISPLAY_ERRORS=FALSE
+      - TIMEZONE=America/Vancouver
+    restart: always
+
+  freescout-db:
+    image: tiredofit/mariadb
+    container_name: freescout-db
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - ROOT_PASS=password
+      - DB_NAME=freescout
+      - DB_USER=freescout
+      - DB_PASS=freescout
+
+      - CONTAINER_NAME=freescout-db
+    restart: always
+
+  freescout-db-backup:
+    container_name: freescout-db-backup
+    image: tiredofit/db-backup
+    links:
+     - freescout-db
+    volumes:
+      - ./dbbackup:/backup
+    environment:
+      - CONTAINER_NAME=freescout-db-backup
+      - DB_HOST=freescout-db
+      - DB_TYPE=mariadb
+      - DB_NAME=freescout
+      - DB_USER=freescout
+      - DB_PASS=freescout
+      - DB_DUMP_FREQ=1440
+      - DB_DUMP_BEGIN=0000
+      - DB_CLEANUP_TIME=8640
+      - COMPRESSION=BZ
+      - MD5=TRUE
+    restart: always

@@ -159,3 +159,5 @@
 2022-06-23T05:10:17-07:00 - 127.0.0.1 - 200 POST "/polycast/receive" 37f3c7092f1cfdb935d2ce18585e69a7 HTTP/1.1 71 "http://127.0.0.1:8001/mailbox/1/1" "Mozilla/5.0 (X11; Linux x86_64; rv:101.0) Gecko/20100101 Firefox/101.0"
 2022-06-23T05:10:22-07:00 - 127.0.0.1 - 200 POST "/polycast/receive" 5bb6c22e9d431f0f54014b88c59980d7 HTTP/1.1 71 "http://127.0.0.1:8001/mailbox/1/1" "Mozilla/5.0 (X11; Linux x86_64; rv:101.0) Gecko/20100101 Firefox/101.0"
 2022-06-23T05:10:27-07:00 - 127.0.0.1 - 200 POST "/polycast/receive" 98cfaf6b45cf0e2489e9fb25997b3212 HTTP/1.1 72 "http://127.0.0.1:8001/mailbox/1/1" "Mozilla/5.0 (X11; Linux x86_64; rv:101.0) Gecko/20100101 Firefox/101.0"
+2022-06-23T06:05:27-07:00 - 127.0.0.1 - 200 GET "/" e21f100581cdeb4e1a6051959b349e05 HTTP/1.1 3172 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:101.0) Gecko/20100101 Firefox/101.0"
+2022-06-23T06:05:27-07:00 - 127.0.0.1 - 200 POST "/polycast/connect" ed49d6e78c1a122c699f28d830b4d723 HTTP/1.1 56 "http://127.0.0.1:8001/" "Mozilla/5.0 (X11; Linux x86_64; rv:101.0) Gecko/20100101 Firefox/101.0"

@@ -8,3 +8,7 @@
 [23-Jun-2022 05:03:37] WARNING: [pool www] child 2431 said into stderr: "msmtp: could not send mail (account default from /etc/msmtprc)"
 [23-Jun-2022 05:10:28] NOTICE: Terminating ...
 [23-Jun-2022 05:10:28] NOTICE: exiting, bye-bye!
+[23-Jun-2022 06:05:22] NOTICE: fpm is running, pid 1427
+[23-Jun-2022 06:05:22] NOTICE: ready to handle connections
+[23-Jun-2022 06:05:38] NOTICE: Terminating ...
+[23-Jun-2022 06:05:38] NOTICE: exiting, bye-bye!

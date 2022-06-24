@@ -1,6 +1,8 @@
 version: '3.3'
 
 services:
+
+  # Website
   db:
     image: mysql:5.7
     volumes:
@@ -27,6 +29,7 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
 
+  # HelpDesk
   freescout:
     image: tiredofit/freescout
     container_name: freescout-app
